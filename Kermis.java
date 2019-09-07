@@ -66,11 +66,6 @@ class Attractie {
 }
 
 
-
-
-
-
-
 class Botsauto extends Attractie {
 	public Botsauto(String naam, double prijs, int oppervlakte) {
 		super(naam, prijs, oppervlakte);
@@ -103,4 +98,9 @@ class Ladderklimmen extends Attractie {
 	public Ladderklimmen(String naam, double prijs, int oppervlakte) {
 		super(naam, prijs, oppervlakte);		
 	}
+}
+
+class Kassa{
+	double omzetHeleKermis;
+	int totaalAantalKaartjes;
 }
