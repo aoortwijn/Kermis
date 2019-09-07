@@ -1,9 +1,11 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Kermis {
 
 	public static void main(String[] args) {
 
+	Attractie attractie = new Attractie(null, 0, 0);
 	Botsauto botsauto = new Botsauto("Botsauto", 2.50, 0);
 	Spin spin = new Spin ("Spin", 2.25, 0);
 	Spiegelhuis spiegelhuis = new Spiegelhuis("Spiegelhuis", 2.75, 0);
@@ -14,7 +16,7 @@ public class Kermis {
 		
 
 		System.out.println("Welkom op de kermis");
-		botsauto.draaien();
+		attractie.attractieDraaien();
 	}
 
 }
@@ -23,14 +25,43 @@ class Attractie {
 	String naam;
 	double prijs;
 	int oppervlakte;
-
 	public Attractie(String naam, double prijs, int oppervlakte) {
 		this.naam = naam;
 		this.prijs = prijs;
 		this.oppervlakte = oppervlakte;
 	}
-	public void draaien() {
+	
+	public Attractie attractieDraaien() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Voer een getal van 1-6 in om een attractie te laten draaien");
+		String invoer = scanner.next();
+		if(invoer.equals("1")) {
+			naam = "Botsauto";
+			return draaien();
+		} else if (invoer.equals("2")) {
+			naam = "Spin";
+			return draaien();
+		} else if (invoer.equals("3")) {
+			naam = "Spiegelhuis";
+			return draaien();
+		} else if (invoer.equals("4")) {
+			naam = "Spookhuis";
+			return draaien();
+		} else if (invoer.equals("5")) {
+			naam = "Hawaii";
+			return draaien();
+		} else if (invoer.equals("6")) {
+			naam = "Ladderklimmen";
+			return draaien();
+		}
+		return null;
+		
+		
+	}
+	
+	public Attractie draaien() {
 		System.out.println("De attractie '" + this.naam + "' draait.");
+		return null;
 	}
 }
 
