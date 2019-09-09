@@ -8,9 +8,10 @@ public class Kermis {
 	Attractie spookhuis = new Spookhuis("Spookhuis", 3.20, 0);
 	Attractie hawaii = new Hawaii("Hawaii", 2.90, 0);
 	Attractie ladderklimmen = new Ladderklimmen("Ladderklimmen", 5.00, 0);
-
+	
 	public static void main(String[] args) {
 		Kermis kermis = new Kermis();
+		
 
 		System.out.println("Welkom op de kermis");
 		kermis.kermisDraaien();
@@ -20,32 +21,31 @@ public class Kermis {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Voer een getal van 1-6 in om een attractie te laten draaien");
 		int invoer = scanner.nextInt();
-		if(invoer < 1 || invoer >  6) {
+		if (invoer < 1 || invoer > 6) {
 			System.out.println("Ongeldige invoer, probeer opnieuw een getal tussen 1-6 in te voeren");
 			kermisDraaien();
 		} else
-		switch (invoer) {
-		case 1:
-			botsauto.draaien();
-			break;
-		case 2:
-			spin.draaien();
-			break;
-		case 3:
-			spiegelhuis.draaien();
-			break;
-		case 4:
-			spookhuis.draaien();
-			break;
-		case 5:
-			hawaii.draaien();
-			break;
-		case 6:
-			ladderklimmen.draaien();
-			break;
-		
-			
-		}
+			switch (invoer) {
+			case 1:
+				botsauto.draaien();
+				break;
+			case 2:
+				spin.draaien();
+				break;
+			case 3:
+				spiegelhuis.draaien();
+				break;
+			case 4:
+				spookhuis.draaien();
+				break;
+			case 5:
+				hawaii.draaien();
+				break;
+			case 6:
+				ladderklimmen.draaien();
+				break;
+
+			}
 
 	}
 
@@ -58,6 +58,7 @@ class Attractie {
 	int aantalKeerDraaien;
 	int aantalKaartjes;
 	double omzet;
+	Kassa kassa = new Kassa();
 
 	public Attractie(String naam, double prijs, int oppervlakte) {
 		this.naam = naam;
@@ -67,23 +68,38 @@ class Attractie {
 
 	public void draaien() {
 		System.out.println("De attractie '" + this.naam + "' draait.");
-
-//		this.aantalKeerDraaien++;
-//		this.omzet = aantalKeerDraaien * prijs;
-//		aantalKeerDraaien = this.aantalKaartjes;
-//
-//		System.out.println("Voer 'o' in voor de omzet, voer 'k' in voor het aantal verkochte kaartjes");
-//		Scanner scanner2 = new Scanner(System.in);
-//		String omzetOfKaartjes = scanner2.next();
-//		if (omzetOfKaartjes.equals("o")) {
-//			System.out.println(this.omzet);
-//		} else if (omzetOfKaartjes.equals("k")) {
-//			System.out.println(this.aantalKaartjes);
-//
-//			return null;
-//		}
+		this.aantalKeerDraaien++;
+//		System.out.println(this.naam + " heeft zo vaak gedraaid: " + this.aantalKeerDraaien);
+		kaartVerkoop();
 	}
 
+	public void kaartVerkoop() {
+		this.aantalKaartjes++;
+		this.omzet = aantalKaartjes * this.prijs;
+//		System.out.println("deze attractie heeft zoveel kaartjes verkocht: " + this.aantalKaartjes);
+//		System.out.println("de omzet van deze attractie is " + this.omzet  );
+		kassa.omzetKermis(this.omzet);
+		kassa.kaartVerkoopKermis(this.aantalKaartjes);
+
+	}
+
+}
+
+class Kassa{
+	double totaleOmzetKermis;
+	int totaalAantalKaartjes;
+
+	
+	public void omzetKermis(double omzet){
+		this.totaleOmzetKermis = totaleOmzetKermis + omzet;
+		System.out.println("De totale omzet van de kermis is: " + totaleOmzetKermis);
+	}
+	
+	public void kaartVerkoopKermis(int kaartjes) {
+		this.totaalAantalKaartjes = totaalAantalKaartjes + kaartjes;
+		System.out.println("Er zijn in totaal zoveel kaartjes verkocht: " + totaalAantalKaartjes);
+	}
+	
 }
 
 class Botsauto extends Attractie {
@@ -122,7 +138,11 @@ class Ladderklimmen extends Attractie {
 	}
 }
 
-class Kassa {
-	double omzetHeleKermis;
-	int totaalAantalKaartjes;
-}
+
+
+
+
+
+
+
+
