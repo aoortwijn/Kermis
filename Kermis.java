@@ -72,6 +72,8 @@ class Attractie {
 //		System.out.println(this.naam + " heeft zo vaak gedraaid: " + this.aantalKeerDraaien);
 		kaartVerkoop();
 	}
+	
+	
 
 	public void kaartVerkoop() {
 		this.aantalKaartjes++;
@@ -80,6 +82,8 @@ class Attractie {
 //		System.out.println("de omzet van deze attractie is " + this.omzet  );
 		kassa.omzetKermis(this.omzet);
 		kassa.kaartVerkoopKermis(this.aantalKaartjes);
+		kassa.toonOmzetOfKaartverkoop();
+		
 
 	}
 
@@ -92,12 +96,23 @@ class Kassa{
 	
 	public void omzetKermis(double omzet){
 		this.totaleOmzetKermis = totaleOmzetKermis + omzet;
-		System.out.println("De totale omzet van de kermis is: " + totaleOmzetKermis);
+//		System.out.println("De totale omzet van de kermis is: " + totaleOmzetKermis);
 	}
 	
 	public void kaartVerkoopKermis(int kaartjes) {
-		this.totaalAantalKaartjes = totaalAantalKaartjes + kaartjes;
+//		this.totaalAantalKaartjes = totaalAantalKaartjes + kaartjes;
 		System.out.println("Er zijn in totaal zoveel kaartjes verkocht: " + totaalAantalKaartjes);
+	}
+	
+	public void toonOmzetOfKaartverkoop() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Voer een 'o' in voor de totale omzet van de kermis, voer een 'k' in voor het totale aantal verkochte kaartjes");
+		String invoer = scanner.next();
+		if (invoer.equals("o")){
+			System.out.println("De totale omzet van de kermis is: " + this.totaleOmzetKermis);
+		} else if (invoer.equals("k")) {
+			System.out.println("Het totaal aantal verkochte kaartjes op de kermis is: " + this.totaalAantalKaartjes);
+		}
 	}
 	
 }
