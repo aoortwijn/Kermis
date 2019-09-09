@@ -1,20 +1,52 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Kermis {
 
-	public static void main(String[] args) {
+	Attractie botsauto = new Botsauto("Botsauto", 2.50, 0);
+	Attractie spin = new Spin("Spin", 2.25, 0);
+	Attractie spiegelhuis = new Spiegelhuis("Spiegelhuis", 2.75, 0);
+	Attractie spookhuis = new Spookhuis("Spookhuis", 3.20, 0);
+	Attractie hawaii = new Hawaii("Hawaii", 2.90, 0);
+	Attractie ladderklimmen = new Ladderklimmen("Ladderklimmen", 5.00, 0);
 
-		Attractie attractie = new Attractie(null, 0, 0);
-		Botsauto botsauto = new Botsauto("Botsauto", 2.50, 0);
-		Spin spin = new Spin("Spin", 2.25, 0);
-		Spiegelhuis spiegelhuis = new Spiegelhuis("Spiegelhuis", 2.75, 0);
-		Spookhuis spookhuis = new Spookhuis("Spookhuis", 3.20, 0);
-		Hawaii hawaii = new Hawaii("Hawaii", 2.90, 0);
-		Ladderklimmen ladderklimmen = new Ladderklimmen("Ladderklimmen", 5.00, 0);
+	public static void main(String[] args) {
+		Kermis kermis = new Kermis();
 
 		System.out.println("Welkom op de kermis");
-		attractie.attractieDraaien();
+		kermis.kermisDraaien();
+	}
+
+	public void kermisDraaien() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Voer een getal van 1-6 in om een attractie te laten draaien");
+		int invoer = scanner.nextInt();
+		if(invoer < 1 || invoer >  6) {
+			System.out.println("Ongeldige invoer, probeer opnieuw een getal tussen 1-6 in te voeren");
+			kermisDraaien();
+		} else
+		switch (invoer) {
+		case 1:
+			botsauto.draaien();
+			break;
+		case 2:
+			spin.draaien();
+			break;
+		case 3:
+			spiegelhuis.draaien();
+			break;
+		case 4:
+			spookhuis.draaien();
+			break;
+		case 5:
+			hawaii.draaien();
+			break;
+		case 6:
+			ladderklimmen.draaien();
+			break;
+		
+			
+		}
+
 	}
 
 }
@@ -24,8 +56,8 @@ class Attractie {
 	double prijs;
 	int oppervlakte;
 	int aantalKeerDraaien;
-	double omzet;
 	int aantalKaartjes;
+	double omzet;
 
 	public Attractie(String naam, double prijs, int oppervlakte) {
 		this.naam = naam;
@@ -33,53 +65,25 @@ class Attractie {
 		this.oppervlakte = oppervlakte;
 	}
 
-	public Attractie attractieDraaien() {
-		Scanner scanner = new Scanner(System.in);
-		System.out.println("Voer een getal van 1-6 in om een attractie te laten draaien");
-		String invoer = scanner.next();
-		if (invoer.equals("1")) {
-			naam = "Botsauto";
-			return draaien();
-		} else if (invoer.equals("2")) {
-			naam = "Spin";
-			return draaien();
-		} else if (invoer.equals("3")) {
-			naam = "Spiegelhuis";
-			return draaien();
-		} else if (invoer.equals("4")) {
-			naam = "Spookhuis";
-			return draaien();
-		} else if (invoer.equals("5")) {
-			naam = "Hawaii";
-			return draaien();
-		} else if (invoer.equals("6")) {
-			naam = "Ladderklimmen";
-			return draaien();
-		}
-		return null;
-
-	}
-
-	public Attractie draaien() {
+	public void draaien() {
 		System.out.println("De attractie '" + this.naam + "' draait.");
-		
 
-		this.aantalKeerDraaien++;
-		this.omzet = aantalKeerDraaien * prijs;
-		aantalKeerDraaien = this.aantalKaartjes;
-
-		System.out.println("Voer 'o' in voor de omzet, voer 'k' in voor het aantal verkochte kaartjes");
-		Scanner scanner2 = new Scanner(System.in);
-		String omzetOfKaartjes = scanner2.next();
-		if (omzetOfKaartjes.equals("o")) {
-			System.out.println(this.omzet);
-		} else if (omzetOfKaartjes.equals("k")) {
-			System.out.println(this.aantalKaartjes);
-
-			return null;
-		}
-		return null;
+//		this.aantalKeerDraaien++;
+//		this.omzet = aantalKeerDraaien * prijs;
+//		aantalKeerDraaien = this.aantalKaartjes;
+//
+//		System.out.println("Voer 'o' in voor de omzet, voer 'k' in voor het aantal verkochte kaartjes");
+//		Scanner scanner2 = new Scanner(System.in);
+//		String omzetOfKaartjes = scanner2.next();
+//		if (omzetOfKaartjes.equals("o")) {
+//			System.out.println(this.omzet);
+//		} else if (omzetOfKaartjes.equals("k")) {
+//			System.out.println(this.aantalKaartjes);
+//
+//			return null;
+//		}
 	}
+
 }
 
 class Botsauto extends Attractie {
