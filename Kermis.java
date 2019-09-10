@@ -9,9 +9,14 @@ public class Kermis {
 	Attractie hawaii = new Hawaii("Hawaii", 2.90, 0);
 	Attractie ladderklimmen = new Ladderklimmen("Ladderklimmen", 5.00, 0);
 	
+//	double totaleOmzet;
+//	totaleOmzetBijwerken();
+//	int totaalAantalKaartjes;
+//	totaalKaartjesBijwerken();
+
+	
 	public static void main(String[] args) {
 		Kermis kermis = new Kermis();
-		
 
 		System.out.println("Welkom op de kermis");
 		kermis.kermisDraaien();
@@ -46,7 +51,7 @@ public class Kermis {
 				break;
 
 			}
-
+		kermisDraaien();
 	}
 
 }
@@ -72,49 +77,46 @@ class Attractie {
 //		System.out.println(this.naam + " heeft zo vaak gedraaid: " + this.aantalKeerDraaien);
 		kaartVerkoop();
 	}
-	
-	
 
 	public void kaartVerkoop() {
 		this.aantalKaartjes++;
 		this.omzet = aantalKaartjes * this.prijs;
 //		System.out.println("deze attractie heeft zoveel kaartjes verkocht: " + this.aantalKaartjes);
 //		System.out.println("de omzet van deze attractie is " + this.omzet  );
-		kassa.omzetKermis(this.omzet);
-		kassa.kaartVerkoopKermis(this.aantalKaartjes);
+		kassa.omzetKermis(this.prijs);
+		kassa.kaartVerkoopKermis(1);
 		kassa.toonOmzetOfKaartverkoop();
-		
 
 	}
 
 }
 
-class Kassa{
+class Kassa {
 	double totaleOmzetKermis;
 	int totaalAantalKaartjes;
 
-	
-	public void omzetKermis(double omzet){
-		this.totaleOmzetKermis = totaleOmzetKermis + omzet;
+	public void omzetKermis(double omzet) {
+		totaleOmzetKermis = totaleOmzetKermis + omzet;
 //		System.out.println("De totale omzet van de kermis is: " + totaleOmzetKermis);
 	}
-	
+
 	public void kaartVerkoopKermis(int kaartjes) {
-//		this.totaalAantalKaartjes = totaalAantalKaartjes + kaartjes;
-		System.out.println("Er zijn in totaal zoveel kaartjes verkocht: " + totaalAantalKaartjes);
+		totaalAantalKaartjes = totaalAantalKaartjes + kaartjes;
+//		System.out.println("Er zijn in totaal zoveel kaartjes verkocht: " + totaalAantalKaartjes);
 	}
-	
+
 	public void toonOmzetOfKaartverkoop() {
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("Voer een 'o' in voor de totale omzet van de kermis, voer een 'k' in voor het totale aantal verkochte kaartjes");
+		System.out.println(
+				"Voer een 'o' in voor de totale omzet van de kermis, voer een 'k' in voor het totale aantal verkochte kaartjes");
 		String invoer = scanner.next();
-		if (invoer.equals("o")){
+		if (invoer.equals("o")) {
 			System.out.println("De totale omzet van de kermis is: " + this.totaleOmzetKermis);
 		} else if (invoer.equals("k")) {
 			System.out.println("Het totaal aantal verkochte kaartjes op de kermis is: " + this.totaalAantalKaartjes);
 		}
 	}
-	
+
 }
 
 class Botsauto extends Attractie {
@@ -152,12 +154,3 @@ class Ladderklimmen extends Attractie {
 		super(naam, prijs, oppervlakte);
 	}
 }
-
-
-
-
-
-
-
-
-
